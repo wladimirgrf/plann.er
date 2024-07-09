@@ -1,0 +1,29 @@
+services:
+  api:
+    build: .
+    container_name: planner-api
+    ports: 
+      - ${PORT}:3333
+    environment:
+      DATABASE_URL: postgresql://${JOURNEY_DB_USER}:${JOURNEY_DB_PASSWORD}@database:${JOURNEY_DB_PORT}/${JOURNEY_DB_NAME}
+      API_BASE_URL: ${API_BASE_URL}
+      WEB_BASE_URL: ${WEB_BASE_URL}
+      PORT: ${PORT}
+    networks:
+      - journey
+
+  database:
+    image: postgres:16.2-alpine3.19
+    container_name: planner-db
+    ports:
+      - ${JOURNEY_DB_PORT}:5432
+    environment:
+      POSTGRES_USER: ${JOURNEY_DB_USER}
+      POSTGRES_PASSWORD: ${JOURNEY_DB_PASSWORD}
+      POSTGRES_DB: ${JOURNEY_DB_NAME}
+    networks:
+      - journey
+
+networks:
+  journey:
+    driver: bridge

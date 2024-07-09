@@ -1,9 +1,11 @@
 {
-  "name": "backend",
+  "name": "plann.er",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "dev": "tsx watch --env-file .env src/server.ts"
+    "dev": "tsx watch --env-file .env src/server.ts",
+    "build": "tsc --outDir dist",
+    "start": "node dist/server.js"
   },
   "keywords": [],
   "author": "",
