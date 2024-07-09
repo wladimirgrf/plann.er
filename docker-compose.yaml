@@ -8,7 +8,7 @@ services:
       DATABASE_URL: postgresql://${JOURNEY_DB_USER}:${JOURNEY_DB_PASSWORD}@database:${JOURNEY_DB_PORT}/${JOURNEY_DB_NAME}
       API_BASE_URL: ${API_BASE_URL}
       WEB_BASE_URL: ${WEB_BASE_URL}
-      PORT: ${PORT}
+      PORT: 3333
     networks:
       - journey
 
