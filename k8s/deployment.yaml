@@ -1,0 +1,48 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: planner-deployment
+  labels:
+    app: planner
+
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: planner
+  template:
+    metadata:
+      labels:
+        app: planner
+    spec:
+      containers:
+        - name: planner-api
+          image: wladimirgrf/planner.api:844f306
+          env:
+          - name: DATABASE_URL
+            valueFrom:
+              secretKeyRef:
+                name: db-connection 
+                key: db_url
+          - name: API_BASE_URL
+            valueFrom:
+              configMapKeyRef:
+                name: app-env
+                key: api_url
+          - name: WEB_BASE_URL
+            valueFrom:
+              configMapKeyRef:
+                name: app-env
+                key: web_url
+          - name: PORT
+            value: "3333"
+          ports:
+            - containerPort: 3333
+          resources:
+            requests:
+              cpu: 100m
+              memory: 256Mi
+            limits:
+              cpu: 200m
+              memory: 256Mi

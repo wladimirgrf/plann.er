@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+
+metadata:
+  name: app-env
+
+data:
+  api_url: http://localhost:3333
+  web_url: http://localhost:3000

@@ -10,7 +10,7 @@ services:
       WEB_BASE_URL: ${WEB_BASE_URL}
       PORT: 3333
     networks:
-      - journey
+      - planner
 
   database:
     image: postgres:16.2-alpine3.19
@@ -22,8 +22,8 @@ services:
       POSTGRES_PASSWORD: ${JOURNEY_DB_PASSWORD}
       POSTGRES_DB: ${JOURNEY_DB_NAME}
     networks:
-      - journey
+      - planner
 
 networks:
-  journey:
+  planner:
     driver: bridge
