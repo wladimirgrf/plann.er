@@ -39,3 +39,12 @@ jobs:
         tags: |
           ${{ secrets.DOCKERHUB_USERNAME }}/planner.api:${{ steps.generate_sha.outputs.sha }}
           ${{ secrets.DOCKERHUB_USERNAME }}/planner.api:latest
+
+    - name: Update image helm
+      uses: fjogeleit/yaml-update-action@main
+      with:
+        valueFile: 'deploy/values.yaml'
+        propertyPath: 'image.tag'
+        value: ${{ steps.generate_sha.outputs.sha }}
+        commitChange: true
+        message: "NEW: Update tag in values helm"
