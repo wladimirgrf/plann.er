@@ -1,35 +1,27 @@
 replicaCount: 10
-
 image:
   repository: wladimirgrf/planner.api
   pullPolicy: IfNotPresent
-  tag: "63bd761"
+  tag: '2487e01'
   containerPort: 3333
-
 imagePullSecrets: []
-nameOverride: ""
-fullnameOverride: ""
-
+nameOverride: ''
+fullnameOverride: ''
 serviceAccount:
   create: true
   automount: true
   annotations: {}
-  name: ""
-
+  name: ''
 podAnnotations: {}
 podLabels: {}
-
 podSecurityContext: {}
-
 securityContext: {}
-
 service:
   type: LoadBalancer
   port: 80
-
 ingress:
   enabled: false
-  className: ""
+  className: ''
   annotations: {}
   hosts:
     - host: chart-example.local
@@ -37,36 +29,20 @@ ingress:
         - path: /
           pathType: ImplementationSpecific
   tls: []
-
-resources: 
+resources:
   limits:
     cpu: 200m
     memory: 128Mi
   requests:
     cpu: 100m
     memory: 128Mi
-
-# livenessProbe:
-#   httpGet:
-#     path: /
-#     port: http
-# readinessProbe:
-#   httpGet:
-#     path: /
-#     port: http
-
 autoscaling:
   enabled: true
   minReplicas: 10
   maxReplicas: 15
   targetCPUUtilizationPercentage: 80
-
 volumes: []
-
 volumeMounts: []
-
 nodeSelector: {}
-
 tolerations: []
-
 affinity: {}
