@@ -3,7 +3,7 @@ replicaCount: 10
 image:
   repository: wladimirgrf/planner.api
   pullPolicy: IfNotPresent
-  tag: "844f306"
+  tag: "63bd761"
   containerPort: 3333
 
 imagePullSecrets: []
