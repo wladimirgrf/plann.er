@@ -6,17 +6,19 @@ terraform {
     }
   }
   backend "s3" {
-    region         = "us-east-1"
+    profile = "planner"
+    region  = "us-east-1"
+
     bucket         = "application-tf-state"
     key            = "terraform.tfstate"
     dynamodb_table = "app-tf-state-lock"
     encrypt        = true
-
   }
 }
 
 provider "aws" {
-  region = "us-east-1"
+  region  = "us-east-1"
+  profile = "planner"
 }
 
 module "vpc" {
@@ -26,13 +28,12 @@ module "vpc" {
 }
 
 module "eks" {
-  source         = "./modules/eks"
-  prefix         = var.prefix
-  vpc_id         = module.vpc.vpc_id
-  subnet_ids     = module.vpc.subnet_ids
-  cluster_name   = var.cluster_name
-  retention_days = var.retention_days
-  desired_size   = var.desired_size
-  max_size       = var.max_size
-  min_size       = var.min_size
+  source       = "./modules/eks"
+  prefix       = var.prefix
+  vpc_id       = module.vpc.vpc_id
+  subnet_ids   = module.vpc.subnet_ids
+  cluster_name = var.cluster_name
+  desired_size = var.desired_size
+  max_size     = var.max_size
+  min_size     = var.min_size
 }
