@@ -43,9 +43,7 @@ jobs:
     - name: Update image helm
       uses: fjogeleit/yaml-update-action@main
       with:
-        branch: release
-        targetBranch: main
-        createPR: true
+        createPR: false
         valueFile: 'deploy/values.yaml'
         propertyPath: 'image.tag'
         value: ${{ steps.generate_sha.outputs.sha }}
