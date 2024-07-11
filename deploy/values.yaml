@@ -2,7 +2,7 @@ replicaCount: 10
 image:
   repository: wladimirgrf/planner.api
   pullPolicy: IfNotPresent
-  tag: a68420a
+  tag: '9388304'
   containerPort: 3333
 imagePullSecrets: []
 nameOverride: ''
